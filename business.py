@@ -56,9 +56,9 @@ def get_data_from_indimart(page_source):
         if(item.select('.prd-name')):
             name=item.select('.prd-name')[0].text
         else: name=""
-        if(item.select('.tac')):
-            address=item.select('.tac')[0].text
-        else: address=""
+        # if(item.select('.tac')):
+        #     address=item.select('.tac')[0].text
+        # else: address=""
         if(item.select('.prc')):
             price=item.select('.prc')[0].text
         else: price=""
@@ -66,14 +66,14 @@ def get_data_from_indimart(page_source):
         # price=item.select('.prc')[0].text
         business_details.append({
             'name':name,
-            'address':address,
+            # 'address':address,
             'price':price
         })
     return business_details
 
 def save_to_csv1(temples, filename='Business_listing_indimart.csv'):
     with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
-        fieldnames = ['name', 'address','price']
+        fieldnames = ['name','price']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for temple in temples:
